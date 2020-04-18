@@ -33,3 +33,6 @@ func newPath(newPath : PoolVector2Array):
 
 func appendPath(newPath: PoolVector2Array):
 	path.append_array(newPath)
+
+
+
