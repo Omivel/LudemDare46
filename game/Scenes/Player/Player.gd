@@ -28,3 +28,8 @@ func _input(event):
 		direction += Vector2(-1, 0)
 	elif event.is_action_released("ui_left"):
 		direction += Vector2(1, 0)
+	
+	if event.is_action_pressed("ui_select"):
+		for node in $Area2D.get_overlapping_areas():
+			if node is Trigger:
+				node.activate()

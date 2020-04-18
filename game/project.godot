@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Monster",
 "language": "GDScript",
 "path": "res://Scenes/Monster/Monster.gd"
+}, {
+"base": "Area2D",
+"class": "Trigger",
+"language": "GDScript",
+"path": "res://Scenes/Trigger/Trigger.gd"
 } ]
 _global_script_class_icons={
-"Monster": ""
+"Monster": "",
+"Trigger": ""
 }
 
 [application]
