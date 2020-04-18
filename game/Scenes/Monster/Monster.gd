@@ -1,7 +1,8 @@
 extends KinematicBody2D
+class_name Monster
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
-const TOLERENCE := Vector2(1.5,1.5)
+const TOLERENCE := 2.5
 
 export var speed : float = 1
 
@@ -19,7 +20,7 @@ func _physics_process(delta):
 	#if there is we move to it until we get to it with some fault tolerence
 	#Once reached the goal is removed from the que
 	if !path.empty():
-		if global_position <= path[0]+TOLERENCE and global_position >= path[0]-TOLERENCE:
+		if global_position.distance_to(path[0]) <= TOLERENCE:
 			path.remove(0)
 		else:
 			#Move the character to the next target
