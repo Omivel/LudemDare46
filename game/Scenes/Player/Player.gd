@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 var direction := Vector2(0,0)
 
@@ -42,4 +43,5 @@ func _input(event):
 					dist = node.get_global_position().distance_to(get_global_position())
 					if dist < dist_lowest:
 						lowest_node = node
-		lowest_node.activate()
+		if(lowest_node != null):
+			lowest_node.activate()

@@ -23,7 +23,9 @@ func _ready():
 				
 			var nav = Navigation2D.new()
 			nav.add_child(navTiles)
-			$Monster.add_child(nav)
+			child.add_child(nav)
+			child.initialize_pathfinding()
+			child.map_updated()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,6 +53,7 @@ func open_door(cordinates: Vector2):
 							if child3 is TileMap:
 								child3.set_cellv(cordinates, 0)
 								child3.update_dirty_quadrants()
+								child.map_updated()
 	else:
 		tileMap.set_cellv(cordinates, 1)
 		tileMap.update_dirty_quadrants()
@@ -62,4 +65,4 @@ func open_door(cordinates: Vector2):
 							if child3 is TileMap:
 								child3.set_cellv(cordinates, -1)
 								child3.update_dirty_quadrants()
-	
+								child.map_updated()
