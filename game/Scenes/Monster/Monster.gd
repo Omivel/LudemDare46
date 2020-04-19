@@ -5,6 +5,7 @@ class_name Monster
 const TOLERENCE := 2.5
 
 export var speed : float = 1
+var playerpos
 
 #a first in first out list of positions to move too
 var path : PoolVector2Array = []
@@ -16,6 +17,8 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+	if playerpos != null:
+		$monstermusic.set_volume_db( -(global_position.distance_to(playerpos) / 15.0))
 	#On each physics tick we check to see if there is a goal to move to
 	#if there is we move to it until we get to it with some fault tolerence
 	#Once reached the goal is removed from the que
@@ -34,5 +37,5 @@ func newPath(newPath : PoolVector2Array):
 func appendPath(newPath: PoolVector2Array):
 	path.append_array(newPath)
 
-
-
+func _on_KinematicBody2D_current_pos(pos):
+	playerpos = pos
