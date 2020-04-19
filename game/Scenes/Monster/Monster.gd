@@ -5,6 +5,7 @@ onready var vision = $Vision
 onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
+signal failstate()
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
@@ -12,17 +13,13 @@ const TOLERENCE := 11
 export var running_speed : float = 200
 export var walking_speed : float = 75
 
-<<<<<<< HEAD
-export var speed : float = 1
 var playerpos
-=======
+
 #left uninitialized to be initialized with an outside call
 var pathfinding : Navigation2D
 #another entity that this node will track down
 var target = null
 var speed = walking_speed
->>>>>>> 21e029ce2d5b251ddbafe05d64d6d9dba4216a46
-
 #a first in first out list of positions to move too
 var path : PoolVector2Array = []
 var direction := Vector2()
@@ -41,7 +38,7 @@ func _ready():
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	if playerpos != null:
-		$monstermusic.set_volume_db( -(global_position.distance_to(playerpos) / 15.0))
+		$monstermusic.set_volume_db( -(global_position.distance_to(playerpos) / 10.0) + 6)
 	#On each physics tick we check to see if there is a goal to move to
 	#if there is we move to it until we get to it with some fault tolerence
 	#Once reached the goal is removed from the que
@@ -57,7 +54,11 @@ func _physics_process(delta):
 		newPath(pathfinding.get_simple_path(global_position, placesToGo[0], false))
 
 func _catch(caught):
-	print("I caught "+str(caught))
+	print("I caught ", caught)
+	if !$failsound.is_playing() && str(caught) == "[KinematicBody2D:1283]": 
+		$failsound.play()
+		$monstermusic.stop()
+		emit_signal("failstate")
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath
@@ -65,10 +66,9 @@ func newPath(newPath : PoolVector2Array):
 func appendPath(newPath: PoolVector2Array):
 	path.append_array(newPath)
 
-<<<<<<< HEAD
 func _on_KinematicBody2D_current_pos(pos):
 	playerpos = pos
-=======
+
 func _new_target(new_target):
 	if new_target is Player:
 		speed = running_speed
@@ -101,4 +101,4 @@ func initialize_pathfinding():
 		if child is Navigation2D:
 			pathfinding = child
 			return
->>>>>>> 21e029ce2d5b251ddbafe05d64d6d9dba4216a46
+

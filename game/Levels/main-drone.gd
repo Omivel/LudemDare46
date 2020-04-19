@@ -20,3 +20,7 @@ func fade_in():
 	else:
 		$Timer.queue_free()
 	i += 1
+
+
+func _on_Monster_failstate():
+	set_volume_db(-80) # Replace with function body.

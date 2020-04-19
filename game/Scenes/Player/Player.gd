@@ -50,9 +50,5 @@ func _input(event):
 					dist = node.get_global_position().distance_to(get_global_position())
 					if dist < dist_lowest:
 						lowest_node = node
-<<<<<<< HEAD
-		if (lowest_node != null):
-=======
 		if(lowest_node != null):
->>>>>>> 21e029ce2d5b251ddbafe05d64d6d9dba4216a46
 			lowest_node.activate()
