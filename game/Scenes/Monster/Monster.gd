@@ -1,10 +1,15 @@
 extends KinematicBody2D
 class_name Monster
 
+onready var vision = $Vision
+onready var chaseTimer = $ChaseTimer
+onready var chaseUpdate = $ChaseUpdateTimer
+onready var atack = $Atack
+
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
 
-export var running_speed : float = 250
+export var running_speed : float = 200
 export var walking_speed : float = 75
 
 #left uninitialized to be initialized with an outside call
@@ -19,9 +24,13 @@ var direction := Vector2()
 
 var placesToGo = []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Vision.connect("body_entered", self, "_new_target")
+	vision.connect("body_entered", self, "_new_target")
+	chaseTimer.connect("timeout", self, "_end_chase")
+	chaseUpdate.connect("timeout", self, "_update_target_path")
+	atack.connect("body_entered", self, "_catch")
 	pass # Replace with function body.
 
 # warning-ignore:unused_argument
@@ -39,7 +48,9 @@ func _physics_process(delta):
 	else:
 		placesToGo.shuffle()
 		newPath(pathfinding.get_simple_path(global_position, placesToGo[0], false))
-	
+
+func _catch(caught):
+	print("I caught "+str(caught))
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath
@@ -52,12 +63,16 @@ func _new_target(new_target):
 		speed = running_speed
 		target = new_target
 		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
+		chaseTimer.start()
+		chaseUpdate.start()
 
 func _update_target_path():
-	pass
+	newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
 
 func _end_chase():
+	chaseUpdate.stop()
 	target = null
+	path = []
 	speed = walking_speed
 
 func map_updated():
