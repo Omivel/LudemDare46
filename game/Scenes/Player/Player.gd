@@ -30,6 +30,16 @@ func _input(event):
 		direction += Vector2(1, 0)
 	
 	if event.is_action_pressed("ui_select"):
+		var dist_lowest
+		var dist
+		var lowest_node = null
 		for node in $Area2D.get_overlapping_areas():
 			if node is Trigger:
-				node.activate()
+				if lowest_node == null:
+					lowest_node = node
+				else:
+					dist_lowest = lowest_node.get_global_position().distance_to(get_global_position())
+					dist = node.get_global_position().distance_to(get_global_position())
+					if dist < dist_lowest:
+						lowest_node = node
+		lowest_node.activate()
