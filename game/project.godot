@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "Gas",
-"language": "GDScript",
-"path": "res://Scenes/Gas/Gas.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Monster",
 "language": "GDScript",
@@ -30,7 +25,6 @@ _global_script_classes=[ {
 "path": "res://Scenes/Trigger/Trigger.gd"
 } ]
 _global_script_class_icons={
-"Gas": "",
 "Monster": "",
 "Player": "",
 "Trigger": ""
