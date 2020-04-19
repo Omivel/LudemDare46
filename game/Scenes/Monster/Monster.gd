@@ -78,9 +78,8 @@ func _end_chase():
 func map_updated():
 	placesToGo.clear()
 	for child in pathfinding.get_children():
-		if child is TileMap:
-			for pos in child.get_used_cells():
-				placesToGo.append(child.map_to_world(pos))
+		for pos in child.get_used_cells():
+			placesToGo.append(child.map_to_world(pos))
 	if !path.empty():
 		newPath(pathfinding.get_simple_path(global_position, path[path.size()-1], false))
 
