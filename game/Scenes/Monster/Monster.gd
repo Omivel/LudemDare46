@@ -14,6 +14,8 @@ const TOLERENCE := 11
 
 export var running_speed : float = 200
 export var walking_speed : float = 75
+#0 is teeth, 1 is leggy
+export var monster_type : int = 0
 
 #left uninitialized to be initialized with an outside call
 var pathfinding : Navigation2D
@@ -87,6 +89,9 @@ func _new_target(new_target):
 		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
 		chaseTimer.start()
 		chaseUpdate.start()
+
+func get_type():
+	return monster_type
 
 func set_traped(new_traped):
 	traped = new_traped

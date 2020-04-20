@@ -148,8 +148,9 @@ position = Vector2( 97, 162 )
 
 [node name="Monster2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 840, 400 )
+monster_type = 1
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 522, 284 )
 
 [node name="Cage2" parent="." instance=ExtResource( 6 )]
