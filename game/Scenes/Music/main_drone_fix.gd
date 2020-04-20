@@ -8,7 +8,7 @@ func _ready():
 	print("ready")
 	$Timer.connect("timeout", self, "fade_in")
 	$Timer.start(0.003)
-	set_volume_db(0)
+	set_volume_db(-40)
 	vcf_main.set_cutoff(0)
 	vcf_main.set_resonance(0.97)
 	play()
