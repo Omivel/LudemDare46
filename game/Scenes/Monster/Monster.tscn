@@ -36,6 +36,7 @@ monitorable = false
 shape = SubResource( 3 )
 
 [node name="Atack" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Atack"]
 shape = SubResource( 4 )

@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Monster/Monster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Trigger/Trigger.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Gas/Gas.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Cage/Cage.tscn" type="PackedScene" id=6]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 2 )
@@ -67,10 +67,8 @@ position = Vector2( 97, 162 )
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 522, 284 )
 
-[node name="Gas" parent="." instance=ExtResource( 6 )]
-modulate = Color( 0.180392, 0.827451, 0.12549, 1 )
-position = Vector2( 224, 288 )
+[node name="Cage" parent="." instance=ExtResource( 6 )]
+position = Vector2( 352, 160 )
 
-[node name="Gas2" parent="." instance=ExtResource( 6 )]
-modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 288, 288 )
+[node name="Monster2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 840, 400 )

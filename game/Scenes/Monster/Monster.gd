@@ -5,6 +5,7 @@ onready var vision = $Vision
 onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
+onready var collisionShape = $CollisionShape2D
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
@@ -27,6 +28,7 @@ var placesToGo = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("Monster")
 	vision.connect("body_entered", self, "_new_target")
 	chaseTimer.connect("timeout", self, "_end_chase")
 	chaseUpdate.connect("timeout", self, "_update_target_path")
@@ -50,7 +52,12 @@ func _physics_process(delta):
 		newPath(pathfinding.get_simple_path(global_position, placesToGo[0], false))
 
 func _catch(caught):
-	print("I caught "+str(caught))
+	if caught is Player:
+		print("You Loose!")
+	if caught.is_in_group("Monster"):
+		if caught == self:
+			return
+	print("I caught "+caught.get_name())
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath
@@ -59,7 +66,9 @@ func appendPath(newPath: PoolVector2Array):
 	path.append_array(newPath)
 
 func _new_target(new_target):
-	if new_target is Player:
+	if new_target is Player or new_target.is_in_group("Monster"):
+		if new_target == self:
+			return
 		speed = running_speed
 		target = new_target
 		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
@@ -78,8 +87,9 @@ func _end_chase():
 func map_updated():
 	placesToGo.clear()
 	for child in pathfinding.get_children():
-		for pos in child.get_used_cells():
-			placesToGo.append(child.map_to_world(pos))
+		if child is TileMap:
+			for pos in child.get_used_cells():
+				placesToGo.append(child.map_to_world(pos))
 	if !path.empty():
 		newPath(pathfinding.get_simple_path(global_position, path[path.size()-1], false))
 
