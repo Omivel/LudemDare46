@@ -31,7 +31,9 @@ func failstate():
 	if !$fail_sound.is_playing():
 		$fail_sound.play()
 		$monster_music.stop()
-		$main_drone.stop()
+
+func main_stop():
+	$main_drone.stop()
 
 func bloop():
 	if !$ping.is_playing():
