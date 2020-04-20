@@ -12,7 +12,7 @@ func _ready():
 	
 	$KinematicBody2D.connect("is_moving", self, "is_moving")
 	$Monster.connect("failstate", self, "failstate")
-	$Trigger.commect("not_door", self, "not_door")
+	$Trigger.connect("not_door", self, "not_door")
 	for child in get_children():
 		#connect to doors
 		if child is Trigger:
