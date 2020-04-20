@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/open-steam.wav-022cda5c379a5fdd208140cfdafa87b6.sample"
+
+[deps]
+
+source_file="res://sound fx/open-steam.wav"
+dest_files=[ "res://.import/open-steam.wav-022cda5c379a5fdd208140cfdafa87b6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

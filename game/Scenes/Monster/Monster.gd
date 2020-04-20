@@ -6,6 +6,7 @@ onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
 onready var collisionShape = $CollisionShape2D
+
 signal failstate(status)
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
