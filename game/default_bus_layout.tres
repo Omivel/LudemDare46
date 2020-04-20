@@ -9,7 +9,7 @@ room_size = 0.41
 damping = 0.34
 spread = 0.13
 hipass = 0.07
-wet = 0.45
+wet = 0.42
 
 [resource]
 bus/1/name = "main drone"

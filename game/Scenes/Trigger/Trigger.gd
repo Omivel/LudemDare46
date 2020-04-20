@@ -4,6 +4,7 @@ class_name Trigger
 export var door : bool = false
 
 signal activated()
+signal not_door()
 signal open_door(cordinates)
 
 # Called when the node enters the scene tree for the first time.
@@ -14,3 +15,5 @@ func activate():
 	emit_signal("activated")
 	if door:
 		emit_signal("open_door", global_position)
+	else:
+		emit_signal("not_door")

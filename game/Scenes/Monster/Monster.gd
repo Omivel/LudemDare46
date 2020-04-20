@@ -60,7 +60,6 @@ func _catch(caught):
 			return
 		else:
 			get_tree().change_scene("res://Scenes/LoseScreen/LoseScreen.tscn")
-	emit_signal("failstate", caught is Player)
 
 
 func newPath(newPath : PoolVector2Array):

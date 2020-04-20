@@ -12,6 +12,7 @@ func _ready():
 	
 	$KinematicBody2D.connect("is_moving", self, "is_moving")
 	$Monster.connect("failstate", self, "failstate")
+	$Trigger.commect("not_door", self, "not_door")
 	for child in get_children():
 		#connect to doors
 		if child is Trigger:
@@ -90,4 +91,7 @@ func is_moving(status):
 	
 func failstate(status):
 	$music_control.failstate(status)
+
+func not_door():
+	$music_control.bloop()
 
