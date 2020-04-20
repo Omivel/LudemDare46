@@ -31,6 +31,16 @@ func failstate():
 	if !$fail_sound.is_playing():
 		$fail_sound.play()
 		$monster_music.stop()
+		$monster2_music.stop()
+		$teethy_licks.stop()
+		$main_drone.stop()
+
+func winstate():
+	if !$win_sound.is_playing():
+		$win_sound.play()
+		$monster_music.stop()
+		$monster2_music.stop()
+		$teethy_licks.stop()
 		$main_drone.stop()
 
 func bloop():
@@ -40,7 +50,8 @@ func bloop():
 func toggle_scary_sounds(monster_type : int):
 	match monster_type:
 		0:
-			if $teethy_licks.is_playing():
+			if !$teethy_licks.is_playing():
+				print("working")
 				$teethy_licks.play()
 			else:
 				$teethy_licks.stop()

@@ -12,8 +12,8 @@ signal stoped_chasing(type)
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
 
-export var running_speed : float = 200
-export var walking_speed : float = 75
+export var running_speed : float = 75
+export var walking_speed : float = 35
 #0 is teeth, 1 is leggy
 export var monster_type : int = 0
 
@@ -94,6 +94,8 @@ func get_type():
 	return monster_type
 
 func set_traped(new_traped):
+	if target != null:
+		emit_signal("stoped_chasing", monster_type)
 	traped = new_traped
 
 func is_traped():
