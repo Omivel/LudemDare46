@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/LoseScreen/LoseScreen.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Music/music_control.tscn" type="PackedScene" id=2]
+[ext_resource path="res://edunline.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 3 )
 
 [node name="LoseScreen" type="Control"]
 anchor_right = 1.0
@@ -11,9 +15,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="music_control" parent="." instance=ExtResource( 2 )]
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1032.0
+margin_bottom = 608.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TextEdit" type="TextEdit" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "You Loose!"
+[node name="objective failed" type="RichTextLabel" parent="."]
+margin_left = 296.0
+margin_top = 200.0
+margin_right = 728.0
+margin_bottom = 256.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 1, 0, 1 )
+meta_underlined = false
+text = "Objective Failed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="return" type="RichTextLabel" parent="."]
+margin_left = 380.0
+margin_top = 328.0
+margin_right = 690.0
+margin_bottom = 384.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 1, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url={\"data\"=\"play\"}][ return ][/url]"
+meta_underlined = false
+text = "[ return ]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="meta_clicked" from="return" to="." method="_on_return_meta_clicked"]

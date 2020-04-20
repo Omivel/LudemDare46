@@ -1,10 +1,14 @@
 extends Node2D
 
+
 func open():
 	$open_door.trig()
 
 func close():
 	$close_door.trig()
+	
+func fade():
+	$main_drone.startready()
 
 func monster(distance, track_num):
 	if track_num == 0: 
@@ -22,31 +26,34 @@ func monster(distance, track_num):
 func footsteps(status):
 	if !$footsteps.is_playing():
 		$footsteps.play()
-	if status && ($footsteps.get_volume_db() != 0):
-		$footsteps.set_volume_db(0)
-	elif !status && ($footsteps.get_volume_db() == 0):
+	if status:# && ($footsteps.get_volume_db() < 0):
+		$footsteps.set_volume_db(18)
+	elif !status:# && ($footsteps.get_volume_db() > 0):
 		$footsteps.set_volume_db(-80)
 
 func failstate():
-	if !$fail_sound.is_playing():
-		$fail_sound.play()
-		$monster_music.stop()
-		$monster2_music.stop()
-		$teethy_licks.stop()
-		$main_drone.stop()
-
+	$fail_sound.stop()
+	$fail_sound.set_volume_db(10)
+	$fail_sound.play()
+	$main_drone.set_volume_db(-80)
+	$monster_music.stop()
+	$footsteps.stop()
+		
 func winstate():
-	if !$win_sound.is_playing():
-		$win_sound.play()
-		$monster_music.stop()
-		$monster2_music.stop()
-		$teethy_licks.stop()
-		$main_drone.stop()
+	$fail_sound.stop()
+	$winstate.set_volume_db(10)
+	$winstate.play()
+	$main_drone.set_volume_db(-80)
+	$monster_music.stop()
+	$footsteps.stop()
+
+func main_stop():
+	$main_drone.stop()
 
 func bloop():
-	if !$ping.is_playing():
-		$ping.play()
-	
+	if !$click.is_playing():
+		$click.play()
+    
 func toggle_scary_sounds(monster_type : int):
 	match monster_type:
 		0:
@@ -54,3 +61,7 @@ func toggle_scary_sounds(monster_type : int):
 				$teethy_licks.play()
 			else:
 				$teethy_licks.stop()
+		
+func is_playing_main():
+	return $main_drone.is_playing()
+

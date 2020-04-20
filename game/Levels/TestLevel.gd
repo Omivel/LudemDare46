@@ -76,7 +76,7 @@ func open_door(cordinates: Vector2):
 	var to_open : bool = tileMap.get_cellv(cordinates) == 1
 	
 	if to_open:
-		$music_control.open()
+		MusicControl.open()
 		tileMap.set_cellv(cordinates, 2)
 		tileMap.update_dirty_quadrants()
 		for child in get_children():
@@ -89,7 +89,7 @@ func open_door(cordinates: Vector2):
 								child3.update_dirty_quadrants()
 								child.map_updated()
 	else:
-		$music_control.close()
+		MusicControl.close()
 		tileMap.set_cellv(cordinates, 1) #close door here
 		tileMap.update_dirty_quadrants()
 		for child in get_children():
@@ -103,10 +103,10 @@ func open_door(cordinates: Vector2):
 								child.map_updated()
 
 func is_moving(status):
-	$music_control.footsteps(status)
+	MusicControl.footsteps(status)
 
 func not_door():
-	$music_control.bloop()
+	MusicControl.bloop()
 
 func _scary_sounds(type):
 	$music_control.toggle_scary_sounds(type)
