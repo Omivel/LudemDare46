@@ -86,7 +86,7 @@ autoplay = true
 stream = ExtResource( 11 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 522, 284 )
+position = Vector2( 524.085, 294.427 )
 
 [node name="footsteps" type="AudioStreamPlayer" parent="KinematicBody2D"]
 stream = ExtResource( 16 )

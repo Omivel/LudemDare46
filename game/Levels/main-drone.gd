@@ -23,4 +23,4 @@ func fade_in():
 
 
 func _on_Monster_failstate():
-	set_volume_db(-80) # Replace with function body.
+	stop() # Replace with function body.
