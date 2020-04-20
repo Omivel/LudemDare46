@@ -6,6 +6,7 @@ onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
 onready var collisionShape = $CollisionShape2D
+onready var animation = $AnimatedSprite
 
 signal is_chasing_player(type)
 signal stoped_chasing(type)
@@ -36,7 +37,10 @@ func _ready():
 	chaseTimer.connect("timeout", self, "_end_chase")
 	chaseUpdate.connect("timeout", self, "_update_target_path")
 	atack.connect("body_entered", self, "_catch")
-	pass # Replace with function body.
+	if monster_type == 0:
+		animation.play("Monster0")
+	elif monster_type == 1:
+		animation.play("Monster1")
 
 # warning-ignore:unused_argument
 func _physics_process(delta):

@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "Turret",
 "language": "GDScript",
-"path": "res://Scenes/Turret.gd"
+"path": "res://Scenes/Turret/Turret.gd"
 } ]
 _global_script_class_icons={
 "Alarm": "",
