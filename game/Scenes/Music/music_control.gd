@@ -51,7 +51,6 @@ func toggle_scary_sounds(monster_type : int):
 	match monster_type:
 		0:
 			if !$teethy_licks.is_playing():
-				print("working")
 				$teethy_licks.play()
 			else:
 				$teethy_licks.stop()

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level_Control
 
 signal door(status)
 
@@ -11,13 +12,12 @@ var how_many_captured : int
 var monster_list = []
 
 func _ready():
-	
 	$Player.connect("is_moving", self, "is_moving")
-	$Trigger.connect("not_door", self, "not_door")
 	for child in get_children():
 		#connect to doors
 		if child is Trigger:
 			child.connect("open_door", self, "open_door")
+			child.connect("not_door", self, "not_door")
 		#create and populate navigation mesh for each monster based on tilemap
 		elif child is Monster:
 			monster_list.append(child)
@@ -41,10 +41,23 @@ func _ready():
 			child.map_updated()
 		elif child is Cage:
 			child.connect("traped", self, "_check_win")
+		elif child is Alarm:
+			child.connect("alarm_start", self, "_alarm")
+			child.connect("alarm_stop", self, "_stop_alarm")
 
 func _process(delta):
 	for mon in monster_list:
 		$music_control.monster(mon.global_position.distance_to($Player.global_position), mon.get_type())
+
+func _alarm(pos):
+	for child in get_children():
+		if child is Monster:
+			child.newGoal(pos, true)
+
+func _stop_alarm():
+	for child in get_children():
+		if child is Monster:
+			child.newPath([])
 
 func _check_win():
 	how_many_captured += 1
@@ -58,7 +71,6 @@ func _input(event):
 				$Monster.newPath(child.get_simple_path($Monster.global_position, get_global_mouse_position(), false))
 
 func open_door(cordinates: Vector2):
-	
 	cordinates = tileMap.world_to_map(cordinates)
 	var to_open : bool = tileMap.get_cellv(cordinates) == 1
 	

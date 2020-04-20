@@ -46,7 +46,7 @@ func _input(event):
 	
 	if direction == Vector2(0,0):
 		sprite.playing = false
-		#todo make this more eficient
+	#todo make this more better
 	emit_signal("is_moving", direction != Vector2(0,0))
 	
 	if event.is_action_pressed("ui_select"):
@@ -55,12 +55,13 @@ func _input(event):
 		var lowest_node = null
 		for node in $Area2D.get_overlapping_areas():
 			if node is Trigger:
-				if lowest_node == null:
-					lowest_node = node
-				else:
-					dist_lowest = lowest_node.get_global_position().distance_to(get_global_position())
-					dist = node.get_global_position().distance_to(get_global_position())
-					if dist < dist_lowest:
+				if node.is_pressable():
+					if lowest_node == null:
 						lowest_node = node
+					else:
+						dist_lowest = lowest_node.get_global_position().distance_to(get_global_position())
+						dist = node.get_global_position().distance_to(get_global_position())
+						if dist < dist_lowest:
+							lowest_node = node
 		if(lowest_node != null):
 			lowest_node.activate()

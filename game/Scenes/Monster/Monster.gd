@@ -27,7 +27,7 @@ var path : PoolVector2Array = []
 var direction := Vector2()
 var traped : bool = false
 var placesToGo = []
-
+var ignore_targets : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,6 +51,7 @@ func _physics_process(delta):
 			direction = path[0]-global_position
 			move_and_slide(direction.normalized()*speed, Vector2(0,0))
 	else:
+		ignore_targets = false
 		placesToGo.shuffle()
 		newPath(pathfinding.get_simple_path(global_position, placesToGo[0], false))
 
@@ -63,6 +64,11 @@ func _catch(caught):
 		else:
 			get_tree().change_scene("res://Scenes/LoseScreen/LoseScreen.tscn")
 
+func newGoal(pos : Vector2, top_priority : bool = false):
+	if top_priority:
+		speed = running_speed
+		ignore_targets = true
+	newPath(pathfinding.get_simple_path(global_position, pos, false))
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath
@@ -72,23 +78,24 @@ func appendPath(newPath: PoolVector2Array):
 
 
 func _new_target(new_target):
-	if new_target is Player:
-		emit_signal("is_chasing_player", monster_type)
-		speed = running_speed
-		target = new_target
-		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
-		chaseTimer.start()
-		chaseUpdate.start()
-	elif new_target.is_in_group("Monster"):
-		if new_target == self:
-			return
-		if new_target.is_traped():
-			return
-		speed = running_speed
-		target = new_target
-		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
-		chaseTimer.start()
-		chaseUpdate.start()
+	if !ignore_targets:
+		if new_target is Player:
+			emit_signal("is_chasing_player", monster_type)
+			speed = running_speed
+			target = new_target
+			newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
+			chaseTimer.start()
+			chaseUpdate.start()
+		elif new_target.is_in_group("Monster"):
+			if new_target == self:
+				return
+			if new_target.is_traped():
+				return
+			speed = running_speed
+			target = new_target
+			newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
+			chaseTimer.start()
+			chaseUpdate.start()
 
 func get_type():
 	return monster_type
