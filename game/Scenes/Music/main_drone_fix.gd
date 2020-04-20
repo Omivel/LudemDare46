@@ -7,7 +7,6 @@ var switch = false
 
 func startready():
 	i = 200
-	print("ready")
 	if !switch:
 		$Timer2.connect("timeout", self, "fade_in")
 		switch = true
@@ -22,6 +21,5 @@ func fade_in():
 	if (i < 350):
 		vcf_main.set_cutoff(pow(2, i / 34.95))
 		if (-40 + ( i / 6.25) <= -5):
-			print(i)
 			set_volume_db(-40 + (i / 6.25))
 	i += 1

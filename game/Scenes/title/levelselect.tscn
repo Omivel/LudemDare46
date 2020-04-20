@@ -167,25 +167,41 @@ __meta__ = {
 }
 
 [node name="level1" type="RichTextLabel" parent="."]
-margin_left = 128.0
+margin_left = 160.0
 margin_top = 128.0
-margin_right = 472.0
+margin_right = 448.0
 margin_bottom = 184.0
 custom_fonts/mono_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 0.952941, 0, 1 )
 bbcode_enabled = true
-bbcode_text = "[url={\"data\"=\"play\"}][ level 1 ][/url]"
+bbcode_text = "[url={\"data\"=\"play\"}][ level 1 [/url]"
 meta_underlined = false
-text = "[ level 1 ]"
+text = "[ level 1 "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="endbracket" type="RichTextLabel" parent="."]
+margin_left = 437.0
+margin_top = 128.0
+margin_right = 720.0
+margin_bottom = 184.0
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0.952941, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url={\"data\"=\"play\"}]][/url]"
+meta_underlined = false
+text = "]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="level2" type="RichTextLabel" parent="."]
-margin_left = 128.0
+margin_left = 160.0
 margin_top = 192.0
-margin_right = 464.0
+margin_right = 496.0
 margin_bottom = 248.0
 custom_fonts/mono_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
@@ -199,9 +215,9 @@ __meta__ = {
 }
 
 [node name="level3" type="RichTextLabel" parent="."]
-margin_left = 128.0
+margin_left = 160.0
 margin_top = 256.0
-margin_right = 448.0
+margin_right = 480.0
 margin_bottom = 312.0
 custom_fonts/mono_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
@@ -215,9 +231,9 @@ __meta__ = {
 }
 
 [node name="level4" type="RichTextLabel" parent="."]
-margin_left = 128.0
+margin_left = 160.0
 margin_top = 320.0
-margin_right = 448.0
+margin_right = 480.0
 margin_bottom = 376.0
 custom_fonts/mono_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
@@ -229,6 +245,70 @@ text = "[ level 4 ]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="level5" type="RichTextLabel" parent="."]
+margin_left = 544.0
+margin_top = 128.0
+margin_right = 888.0
+margin_bottom = 184.0
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0.952941, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url={\"data\"=\"play\"}][ level 5 ][/url]"
+meta_underlined = false
+text = "[ level 5 ]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level6" type="RichTextLabel" parent="."]
+margin_left = 544.0
+margin_top = 184.0
+margin_right = 888.0
+margin_bottom = 240.0
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0.952941, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url={\"data\"=\"play\"}][ level 6 ][/url]"
+meta_underlined = false
+text = "[ level 6 ]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level7" type="RichTextLabel" parent="."]
+margin_left = 544.0
+margin_top = 248.0
+margin_right = 888.0
+margin_bottom = 304.0
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0.952941, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url={\"data\"=\"play\"}][ level 7 ][/url]"
+meta_underlined = false
+text = "[ level 7 ]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level8" type="RichTextLabel" parent="."]
+margin_left = 544.0
+margin_top = 320.0
+margin_right = 888.0
+margin_bottom = 376.0
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0.952941, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url={\"data\"=\"play\"}][ level 8 ][/url]"
+meta_underlined = false
+text = "[ level 8 ]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="meta_clicked" from="credits" to="." method="_on_credits_meta_clicked"]
 [connection signal="meta_clicked" from="back" to="." method="_on_back_meta_clicked"]
 [connection signal="meta_clicked" from="acknowledge" to="." method="_on_acknowledge_meta_clicked"]
@@ -237,3 +317,7 @@ __meta__ = {
 [connection signal="meta_clicked" from="level2" to="." method="_on_level2_meta_clicked"]
 [connection signal="meta_clicked" from="level3" to="." method="_on_level3_meta_clicked"]
 [connection signal="meta_clicked" from="level4" to="." method="_on_level4_meta_clicked"]
+[connection signal="meta_clicked" from="level5" to="." method="_on_level5_meta_clicked"]
+[connection signal="meta_clicked" from="level6" to="." method="_on_level6_meta_clicked"]
+[connection signal="meta_clicked" from="level7" to="." method="_on_level7_meta_clicked"]
+[connection signal="meta_clicked" from="level8" to="." method="_on_level8_meta_clicked"]
