@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	MusicControl.failstate()
+	MusicControl.winstate()
 	
 func _process(delta):
 	MusicControl.main_stop()

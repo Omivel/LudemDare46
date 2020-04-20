@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/TestTileset/TestTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/TestLevel.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Scenes/TestTileset/Door.png" type="Texture" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/TestTileset/floor32.png" type="Texture" id=10]
-[ext_resource path="res://Scenes/Music/music_control.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -88,8 +87,6 @@ resource_local_to_scene = true
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="music_control" parent="." instance=ExtResource( 21 )]
 
 [node name="Trigger" parent="." instance=ExtResource( 5 )]
 position = Vector2( 96, 481 )

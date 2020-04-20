@@ -6,6 +6,9 @@ func open():
 
 func close():
 	$close_door.trig()
+	
+func fade():
+	$main_drone.startready()
 
 func monster(distance, track_num):
 	if track_num == 0: 
@@ -34,11 +37,22 @@ func failstate():
 		$fail_sound.play()
 		$main_drone.set_volume_db(-80)
 		$monster_music.stop()
+		$footsteps.stop()
+		
+func winstate():
+	if !$winstate.is_playing():
+		$winstate.set_volume_db(10)
+		$winstate.play()
+		$main_drone.set_volume_db(-80)
+		$monster_music.stop()
+		$footsteps.stop()
 
 func main_stop():
 	$main_drone.stop()
 
 func bloop():
-	if !$ping.is_playing():
-		$ping.play()
-	
+	if !$click.is_playing():
+		$click.play()
+		
+func is_playing_main():
+	return $main_drone.is_playing()
