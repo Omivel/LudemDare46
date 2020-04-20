@@ -5,9 +5,7 @@ onready var vision = $Vision
 onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
-
-onready var collisionShape = $CollisionShape2D
-
+signal failstate(status)
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
@@ -20,7 +18,6 @@ var pathfinding : Navigation2D
 #another entity that this node will track down
 var target = null
 var speed = walking_speed
-
 #a first in first out list of positions to move too
 var path : PoolVector2Array = []
 var direction := Vector2()
@@ -30,7 +27,6 @@ var placesToGo = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("Monster")
 	vision.connect("body_entered", self, "_new_target")
 	chaseTimer.connect("timeout", self, "_end_chase")
 	chaseUpdate.connect("timeout", self, "_update_target_path")
@@ -46,7 +42,7 @@ func _physics_process(delta):
 		if global_position.distance_to(path[0]) <= TOLERENCE:
 			path.remove(0)
 		else:
-			#Move the character to the next target
+			#the character to the next target
 			direction = path[0]-global_position
 			move_and_slide(direction.normalized()*speed, Vector2(0,0))
 	else:
@@ -61,12 +57,15 @@ func _catch(caught):
 			return
 		else:
 			get_tree().change_scene("res://Scenes/LoseScreen/LoseScreen.tscn")
+	emit_signal("failstate", caught is Player)
+
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath
 
 func appendPath(newPath: PoolVector2Array):
 	path.append_array(newPath)
+
 
 func _new_target(new_target):
 	if new_target is Player:
@@ -116,3 +115,4 @@ func initialize_pathfinding():
 		if child is Navigation2D:
 			pathfinding = child
 			return
+

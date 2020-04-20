@@ -11,8 +11,6 @@ func _ready():
 	pass # Replace with function body.
 
 func activate():
-	print("YES!")
 	emit_signal("activated")
 	if door:
-		print("door")
 		emit_signal("open_door", global_position)

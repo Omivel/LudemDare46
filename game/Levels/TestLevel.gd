@@ -1,5 +1,7 @@
 extends Node2D
 
+signal door(status)
+
 onready var navTilesPath = load("res://Scenes/NavTileset/NavTileset.tscn")
 onready var tileMap = $TestTileMap
 
@@ -8,6 +10,8 @@ var how_many_captured : int
 
 func _ready():
 	
+	$KinematicBody2D.connect("is_moving", self, "is_moving")
+	$Monster.connect("failstate", self, "failstate")
 	for child in get_children():
 		#connect to doors
 		if child is Trigger:
@@ -50,10 +54,12 @@ func _input(event):
 				$Monster.newPath(child.get_simple_path($Monster.global_position, get_global_mouse_position(), false))
 
 func open_door(cordinates: Vector2):
+	
 	cordinates = tileMap.world_to_map(cordinates)
 	var to_open : bool = tileMap.get_cellv(cordinates) == 1
 	
 	if to_open:
+		$music_control.open()
 		tileMap.set_cellv(cordinates, 2)
 		tileMap.update_dirty_quadrants()
 		for child in get_children():
@@ -66,7 +72,8 @@ func open_door(cordinates: Vector2):
 								child3.update_dirty_quadrants()
 								child.map_updated()
 	else:
-		tileMap.set_cellv(cordinates, 1)
+		$music_control.close()
+		tileMap.set_cellv(cordinates, 1) #close door here
 		tileMap.update_dirty_quadrants()
 		for child in get_children():
 			if child is Monster:
@@ -77,3 +84,10 @@ func open_door(cordinates: Vector2):
 								child3.set_cellv(cordinates, -1)
 								child3.update_dirty_quadrants()
 								child.map_updated()
+
+func is_moving(status):
+	$music_control.footsteps(status)
+	
+func failstate(status):
+	$music_control.failstate(status)
+
