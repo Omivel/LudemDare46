@@ -4,7 +4,10 @@ signal door(status)
 
 onready var navTilesPath = load("res://Scenes/NavTileset/NavTileset.tscn")
 onready var tileMap = $TestTileMap
-# Called when the node enters the scene tree for the first time.
+
+var how_many_monsters : int
+var how_many_captured : int
+
 func _ready():
 	
 	$KinematicBody2D.connect("is_moving", self, "is_moving")
@@ -15,6 +18,7 @@ func _ready():
 			child.connect("open_door", self, "open_door")
 		#create and populate navigation mesh for each monster based on tilemap
 		elif child is Monster:
+			how_many_monsters += 1
 			var navTiles = navTilesPath.instance()
 			for tile in tileMap.get_used_cells():
 				match tileMap.get_cellv(tile):
@@ -30,11 +34,18 @@ func _ready():
 			child.add_child(nav)
 			child.initialize_pathfinding()
 			child.map_updated()
+		elif child is Cage:
+			child.connect("traped", self, "_check_win")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _check_win():
+	how_many_captured += 1
+	if how_many_captured == how_many_monsters:
+		get_tree().change_scene("res://Scenes/WinScreen/WinScreen.tscn")
 
 func _input(event):
 	if event.is_action_pressed("Left_click"):

@@ -21,7 +21,7 @@ var speed = walking_speed
 #a first in first out list of positions to move too
 var path : PoolVector2Array = []
 var direction := Vector2()
-
+var traped : bool = false
 var placesToGo = []
 
 
@@ -50,8 +50,15 @@ func _physics_process(delta):
 		newPath(pathfinding.get_simple_path(global_position, placesToGo[0], false))
 
 func _catch(caught):
-	print("I caught ", caught)
+	if caught is Player:
+		get_tree().change_scene("res://Scenes/LoseScreen/LoseScreen.tscn")
+	if caught.is_in_group("Monster"):
+		if caught == self or caught.is_traped():
+			return
+		else:
+			get_tree().change_scene("res://Scenes/LoseScreen/LoseScreen.tscn")
 	emit_signal("failstate", caught is Player)
+
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath
@@ -67,6 +74,22 @@ func _new_target(new_target):
 		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
 		chaseTimer.start()
 		chaseUpdate.start()
+	elif new_target.is_in_group("Monster"):
+		if new_target == self:
+			return
+		if new_target.is_traped():
+			return
+		speed = running_speed
+		target = new_target
+		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
+		chaseTimer.start()
+		chaseUpdate.start()
+
+func set_traped(new_traped):
+	traped = new_traped
+
+func is_traped():
+	return traped
 
 func _update_target_path():
 	newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))

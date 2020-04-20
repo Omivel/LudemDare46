@@ -66,5 +66,16 @@ tile_data = PoolIntArray( 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65540, 0, 0, 65
 [node name="Monster" parent="." instance=ExtResource( 3 )]
 position = Vector2( 414, 156 )
 
+[node name="Monster2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 840, 400 )
+
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 524.085, 294.427 )
+
+position = Vector2( 522, 284 )
+
+[node name="Cage2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 864, 160 )
+
+[node name="Cage" parent="." instance=ExtResource( 6 )]
+position = Vector2( 352, 160 )
+

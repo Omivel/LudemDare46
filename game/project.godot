@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Cage",
+"language": "GDScript",
+"path": "res://Scenes/Cage/Cage.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Monster",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Scenes/Trigger/Trigger.gd"
 } ]
 _global_script_class_icons={
+"Cage": "",
 "Monster": "",
 "Player": "",
 "Trigger": ""
