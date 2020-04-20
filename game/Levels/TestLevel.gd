@@ -18,6 +18,8 @@ func _ready():
 		if child is Trigger:
 			child.connect("open_door", self, "open_door")
 			child.connect("not_door", self, "not_door")
+			if child.door and !child.open:
+				open_door(child.get_position())
 		#create and populate navigation mesh for each monster based on tilemap
 		elif child is Monster:
 			monster_list.append(child)

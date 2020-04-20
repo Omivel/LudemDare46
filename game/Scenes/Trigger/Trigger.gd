@@ -27,10 +27,8 @@ func _process(delta):
 		if door and animated_sprite != null:
 			if open and animated_sprite.frame != 19:
 				animated_sprite.frame = 19
-				emit_signal("open_door", global_position)
 			elif !open and animated_sprite.frame != 0:
 				animated_sprite.frame = 0
-				emit_signal("open_door", global_position)
 
 func activate():
 	emit_signal("activated")
