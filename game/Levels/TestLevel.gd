@@ -13,7 +13,6 @@ var monster_list = []
 func _ready():
 	
 	$Player.connect("is_moving", self, "is_moving")
-	$Monster.connect("failstate", self, "failstate")
 	$Trigger.connect("not_door", self, "not_door")
 	for child in get_children():
 		#connect to doors
@@ -23,6 +22,8 @@ func _ready():
 		elif child is Monster:
 			monster_list.append(child)
 			how_many_monsters += 1
+			child.connect("is_chasing_player", self, "_scary_sounds")
+			child.connect("stoped_chasing", self, "_scary_sounds")
 			var navTiles = navTilesPath.instance()
 			for tile in tileMap.get_used_cells():
 				match tileMap.get_cellv(tile):
@@ -90,10 +91,9 @@ func open_door(cordinates: Vector2):
 
 func is_moving(status):
 	$music_control.footsteps(status)
-	
-func failstate(status):
-	$music_control.failstate(status)
 
 func not_door():
 	$music_control.bloop()
 
+func _scary_sounds(type):
+	$music_control.toggle_scary_sounds(type)

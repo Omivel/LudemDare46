@@ -7,8 +7,8 @@ onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
 onready var collisionShape = $CollisionShape2D
 
-signal failstate(status)
-
+signal is_chasing_player(type)
+signal stoped_chasing(type)
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
 
@@ -73,6 +73,7 @@ func appendPath(newPath: PoolVector2Array):
 
 func _new_target(new_target):
 	if new_target is Player:
+		emit_signal("is_chasing_player", monster_type)
 		speed = running_speed
 		target = new_target
 		newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
@@ -102,6 +103,7 @@ func _update_target_path():
 	newPath(pathfinding.get_simple_path(global_position, target.get_global_position(), false))
 
 func _end_chase():
+	emit_signal("stoped_chasing", monster_type)
 	chaseUpdate.stop()
 	target = null
 	path = []
