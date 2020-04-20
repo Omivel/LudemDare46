@@ -8,9 +8,11 @@ onready var tileMap = $TestTileMap
 var how_many_monsters : int
 var how_many_captured : int
 
+var monster_list = []
+
 func _ready():
 	
-	$KinematicBody2D.connect("is_moving", self, "is_moving")
+	$Player.connect("is_moving", self, "is_moving")
 	$Monster.connect("failstate", self, "failstate")
 	$Trigger.connect("not_door", self, "not_door")
 	for child in get_children():
@@ -19,6 +21,7 @@ func _ready():
 			child.connect("open_door", self, "open_door")
 		#create and populate navigation mesh for each monster based on tilemap
 		elif child is Monster:
+			monster_list.append(child)
 			how_many_monsters += 1
 			var navTiles = navTilesPath.instance()
 			for tile in tileMap.get_used_cells():
@@ -38,10 +41,9 @@ func _ready():
 		elif child is Cage:
 			child.connect("traped", self, "_check_win")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	for mon in monster_list:
+		$music_control.monster(mon.global_position.distance_to($Player.global_position), mon.get_type())
 
 func _check_win():
 	how_many_captured += 1
