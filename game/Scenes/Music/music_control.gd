@@ -1,5 +1,6 @@
 extends Node2D
 
+
 func open():
 	$open_door.trig()
 
@@ -22,14 +23,16 @@ func monster(distance, track_num):
 func footsteps(status):
 	if !$footsteps.is_playing():
 		$footsteps.play()
-	if status && ($footsteps.get_volume_db() != 0):
-		$footsteps.set_volume_db(0)
-	elif !status && ($footsteps.get_volume_db() == 0):
+	if status:# && ($footsteps.get_volume_db() < 0):
+		$footsteps.set_volume_db(18)
+	elif !status:# && ($footsteps.get_volume_db() > 0):
 		$footsteps.set_volume_db(-80)
 
 func failstate():
 	if !$fail_sound.is_playing():
+		$fail_sound.set_volume_db(10)
 		$fail_sound.play()
+		$main_drone.set_volume_db(-80)
 		$monster_music.stop()
 
 func main_stop():

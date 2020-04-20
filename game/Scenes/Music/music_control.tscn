@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Music/main_drone_fix.gd" type="Script" id=1]
-[ext_resource path="res://music/drone-base.wav" type="AudioStream" id=2]
+[ext_resource path="res://music/main-master.wav" type="AudioStream" id=2]
 [ext_resource path="res://sound fx/close-door.wav" type="AudioStream" id=3]
 [ext_resource path="res://sound fx/footsteps.wav" type="AudioStream" id=4]
 [ext_resource path="res://sound fx/fail-state.wav" type="AudioStream" id=5]
@@ -25,6 +25,7 @@ bus = "space reverb"
 
 [node name="main_drone" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -4.588
 bus = "main drone"
 script = ExtResource( 1 )
 
