@@ -5,7 +5,7 @@ onready var vision = $Vision
 onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
-signal failstate()
+signal failstate(status)
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
@@ -37,8 +37,6 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
-	if playerpos != null:
-		$monstermusic.set_volume_db( -(global_position.distance_to(playerpos) / 20.0) + 6)
 	#On each physics tick we check to see if there is a goal to move to
 	#if there is we move to it until we get to it with some fault tolerence
 	#Once reached the goal is removed from the que
@@ -54,11 +52,8 @@ func _physics_process(delta):
 		newPath(pathfinding.get_simple_path(global_position, placesToGo[0], false))
 
 func _catch(caught):
-	if !$failsound.is_playing() && str(caught) == "[KinematicBody2D:1283]": 
-		print("I caught ", caught)
-		$failsound.play()
-		$monstermusic.stop()
-		emit_signal("failstate")
+	print("I caught ", caught)
+	emit_signal("failstate", caught is Player)
 
 func newPath(newPath : PoolVector2Array):
 	path = newPath

@@ -1,28 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/TestTileset/TestTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/TestLevel.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Monster/Monster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Trigger/Trigger.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Levels/main-drone.gd" type="Script" id=6]
-[ext_resource path="res://Levels/Timer.gd" type="Script" id=7]
-[ext_resource path="res://music/drone-base.wav" type="AudioStream" id=8]
-[ext_resource path="res://music/drone-pursuit.wav" type="AudioStream" id=9]
-[ext_resource path="res://Levels/pursuit-1.gd" type="Script" id=10]
-[ext_resource path="res://sound fx/fail-state.wav" type="AudioStream" id=11]
-[ext_resource path="res://Levels/rhodes.gd" type="Script" id=12]
-[ext_resource path="res://music/drone-rhodes.wav" type="AudioStream" id=13]
-[ext_resource path="res://music/drone-bugs.wav" type="AudioStream" id=14]
-[ext_resource path="res://Levels/footsteps.gd" type="Script" id=15]
-[ext_resource path="res://sound fx/footsteps.wav" type="AudioStream" id=16]
-[ext_resource path="res://Levels/open-door.gd" type="Script" id=17]
-[ext_resource path="res://Levels/close-door.gd" type="Script" id=18]
-[ext_resource path="res://sound fx/close-door.wav" type="AudioStream" id=19]
-[ext_resource path="res://sound fx/open-door.wav" type="AudioStream" id=20]
+[ext_resource path="res://Scenes/Music/music_control.tscn" type="PackedScene" id=21]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="music_control" parent="." instance=ExtResource( 21 )]
 
 [node name="Trigger" parent="." instance=ExtResource( 5 )]
 position = Vector2( 96, 481 )
@@ -78,64 +66,6 @@ tile_data = PoolIntArray( 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65540, 0, 0, 65
 [node name="Monster" parent="." instance=ExtResource( 3 )]
 position = Vector2( 414, 156 )
 
-[node name="monstermusic" type="AudioStreamPlayer" parent="Monster"]
-stream = ExtResource( 14 )
-autoplay = true
-
-[node name="failsound" type="AudioStreamPlayer" parent="Monster"]
-stream = ExtResource( 11 )
-
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 524.085, 294.427 )
-
-[node name="footsteps" type="AudioStreamPlayer" parent="KinematicBody2D"]
-stream = ExtResource( 16 )
-bus = "space reverb"
-script = ExtResource( 15 )
-
-[node name="maindrone" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-bus = "main drone"
-script = ExtResource( 6 )
-
-[node name="Timer" type="Timer" parent="maindrone"]
-script = ExtResource( 7 )
-
-[node name="pursuit-1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-script = ExtResource( 10 )
-
-[node name="rhodes" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-script = ExtResource( 12 )
-
-[node name="open-door-1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
-script = ExtResource( 17 )
-
-[node name="one" type="AudioStreamPlayer" parent="open-door-1"]
-stream = ExtResource( 20 )
-
-[node name="two" type="AudioStreamPlayer" parent="open-door-1"]
-stream = ExtResource( 20 )
-
-[node name="three" type="AudioStreamPlayer" parent="open-door-1"]
-stream = ExtResource( 20 )
-
-[node name="close-door-1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
-script = ExtResource( 18 )
-
-[node name="one" type="AudioStreamPlayer" parent="close-door-1"]
-stream = ExtResource( 19 )
-
-[node name="two" type="AudioStreamPlayer" parent="close-door-1"]
-stream = ExtResource( 19 )
-
-[node name="three" type="AudioStreamPlayer" parent="close-door-1"]
-stream = ExtResource( 19 )
-[connection signal="door" from="." to="close-door-1" method="_on_TestLevel_door"]
-[connection signal="door" from="." to="open-door-1" method="_on_TestLevel_door"]
-[connection signal="failstate" from="Monster" to="maindrone" method="_on_Monster_failstate"]
 [connection signal="current_pos" from="KinematicBody2D" to="Monster" method="_on_KinematicBody2D_current_pos"]
-[connection signal="is_moving" from="KinematicBody2D" to="KinematicBody2D/footsteps" method="_on_KinematicBody2D_is_moving"]
