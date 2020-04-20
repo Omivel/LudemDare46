@@ -46,7 +46,7 @@ func _physics_process(delta):
 		if global_position.distance_to(path[0]) <= TOLERENCE:
 			path.remove(0)
 		else:
-			#Move the character to the next target
+			#the character to the next target
 			direction = path[0]-global_position
 			move_and_slide(direction.normalized()*speed, Vector2(0,0))
 	else:

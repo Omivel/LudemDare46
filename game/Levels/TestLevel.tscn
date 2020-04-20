@@ -134,8 +134,8 @@ stream = ExtResource( 19 )
 
 [node name="three" type="AudioStreamPlayer" parent="close-door-1"]
 stream = ExtResource( 19 )
-[connection signal="door" from="." to="open-door-1" method="_on_TestLevel_door"]
 [connection signal="door" from="." to="close-door-1" method="_on_TestLevel_door"]
+[connection signal="door" from="." to="open-door-1" method="_on_TestLevel_door"]
 [connection signal="failstate" from="Monster" to="maindrone" method="_on_Monster_failstate"]
 [connection signal="current_pos" from="KinematicBody2D" to="Monster" method="_on_KinematicBody2D_current_pos"]
 [connection signal="is_moving" from="KinematicBody2D" to="KinematicBody2D/footsteps" method="_on_KinematicBody2D_is_moving"]
