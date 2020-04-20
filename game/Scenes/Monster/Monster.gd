@@ -5,6 +5,7 @@ onready var vision = $Vision
 onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
+onready var collisionShape = $CollisionShape2D
 signal failstate(status)
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
@@ -27,6 +28,7 @@ var placesToGo = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("Monster")
 	vision.connect("body_entered", self, "_new_target")
 	chaseTimer.connect("timeout", self, "_end_chase")
 	chaseUpdate.connect("timeout", self, "_update_target_path")
@@ -57,7 +59,6 @@ func _catch(caught):
 			return
 		else:
 			get_tree().change_scene("res://Scenes/LoseScreen/LoseScreen.tscn")
-	emit_signal("failstate", caught is Player)
 
 
 func newPath(newPath : PoolVector2Array):
