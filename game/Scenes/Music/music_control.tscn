@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=18 format=2]
+
 
 [ext_resource path="res://Scenes/Music/main_drone_fix.gd" type="Script" id=1]
 [ext_resource path="res://music/main-master.wav" type="AudioStream" id=2]
@@ -18,8 +20,12 @@
 [ext_resource path="res://sound fx/end-state.wav" type="AudioStream" id=16]
 [ext_resource path="res://sound fx/click.wav" type="AudioStream" id=17]
 
+
 [node name="music_control" type="Node2D"]
 script = ExtResource( 12 )
+
+[node name="win_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
 
 [node name="teethy_licks" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )

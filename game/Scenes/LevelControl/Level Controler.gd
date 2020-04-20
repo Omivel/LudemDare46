@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level_Control
 
 signal door(status)
 
@@ -76,7 +77,7 @@ func open_door(cordinates: Vector2):
 	var to_open : bool = tileMap.get_cellv(cordinates) == 1
 	
 	if to_open:
-		MusicControl.open()
+		$music_control.open()
 		tileMap.set_cellv(cordinates, 2)
 		tileMap.update_dirty_quadrants()
 		for child in get_children():
@@ -89,7 +90,7 @@ func open_door(cordinates: Vector2):
 								child3.update_dirty_quadrants()
 								child.map_updated()
 	else:
-		MusicControl.close()
+		$music_control.close()
 		tileMap.set_cellv(cordinates, 1) #close door here
 		tileMap.update_dirty_quadrants()
 		for child in get_children():
@@ -103,10 +104,10 @@ func open_door(cordinates: Vector2):
 								child.map_updated()
 
 func is_moving(status):
-	MusicControl.footsteps(status)
+	$music_control.footsteps(status)
 
 func not_door():
-	MusicControl.bloop()
+	$music_control.bloop()
 
 func _scary_sounds(type):
 	$music_control.toggle_scary_sounds(type)

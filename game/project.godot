@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Alarm",
+"language": "GDScript",
+"path": "res://Scenes/Alarm/Alarm.gd"
+}, {
 "base": "Area2D",
 "class": "Cage",
 "language": "GDScript",
 "path": "res://Scenes/Cage/Cage.gd"
+}, {
+"base": "Node2D",
+"class": "Level_Control",
+"language": "GDScript",
+"path": "res://Scenes/LevelControl/Level Controler.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Monster",
@@ -28,12 +38,20 @@ _global_script_classes=[ {
 "class": "Trigger",
 "language": "GDScript",
 "path": "res://Scenes/Trigger/Trigger.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Turret",
+"language": "GDScript",
+"path": "res://Scenes/Turret/Turret.gd"
 } ]
 _global_script_class_icons={
+"Alarm": "",
 "Cage": "",
+"Level_Control": "",
 "Monster": "",
 "Player": "",
-"Trigger": ""
+"Trigger": "",
+"Turret": ""
 }
 
 [application]

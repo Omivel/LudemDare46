@@ -14,10 +14,10 @@ func monster(distance, track_num):
 	if track_num == 0: 
 		if !$monster_music.is_playing():
 			$monster_music.play()
-		if !$teethy_licks.is_playing():
-			$teethy_licks.play()
+#		if !$teethy_licks.is_playing():
+#			$teethy_licks.play()
 		$monster_music.set_volume_db(-distance / 20.0 + 6)
-		$teethy_licks.set_volume_db(-distance / 20.0 + 6)
+#		$teethy_licks.set_volume_db(-distance / 20.0 + 6)
 	elif track_num == 1:
 		if !$monster2_music.is_playing():
 			$monster2_music.play()
@@ -53,6 +53,15 @@ func main_stop():
 func bloop():
 	if !$click.is_playing():
 		$click.play()
+    
+func toggle_scary_sounds(monster_type : int):
+	match monster_type:
+		0:
+			if !$teethy_licks.is_playing():
+				$teethy_licks.play()
+			else:
+				$teethy_licks.stop()
 		
 func is_playing_main():
 	return $main_drone.is_playing()
+

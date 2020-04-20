@@ -8,11 +8,11 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
-[sub_resource type="NavigationPolygon" id=3]
+[sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=3]
 resource_local_to_scene = true
 0/name = "icon.png 0"
 0/texture = ExtResource( 1 )
@@ -71,7 +71,7 @@ resource_local_to_scene = true
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/navigation = SubResource( 3 )
+3/navigation = SubResource( 2 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 3/shape_one_way = false
@@ -80,7 +80,7 @@ resource_local_to_scene = true
 3/z_index = 0
 
 [node name="TestTileMap" type="TileMap"]
-tile_set = SubResource( 2 )
+tile_set = SubResource( 3 )
 collision_layer = 5
 collision_mask = 5
 format = 1
