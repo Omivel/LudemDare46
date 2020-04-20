@@ -32,20 +32,20 @@ func footsteps(status):
 		$footsteps.set_volume_db(-80)
 
 func failstate():
-	if !$fail_sound.is_playing():
-		$fail_sound.set_volume_db(10)
-		$fail_sound.play()
-		$main_drone.set_volume_db(-80)
-		$monster_music.stop()
-		$footsteps.stop()
+	$fail_sound.stop()
+	$fail_sound.set_volume_db(10)
+	$fail_sound.play()
+	$main_drone.set_volume_db(-80)
+	$monster_music.stop()
+	$footsteps.stop()
 		
 func winstate():
-	if !$winstate.is_playing():
-		$winstate.set_volume_db(10)
-		$winstate.play()
-		$main_drone.set_volume_db(-80)
-		$monster_music.stop()
-		$footsteps.stop()
+	$fail_sound.stop()
+	$winstate.set_volume_db(10)
+	$winstate.play()
+	$main_drone.set_volume_db(-80)
+	$monster_music.stop()
+	$footsteps.stop()
 
 func main_stop():
 	$main_drone.stop()
