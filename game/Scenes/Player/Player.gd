@@ -2,7 +2,6 @@ extends KinematicBody2D
 class_name Player
 
 signal is_moving(status)
-signal current_pos(pos)
 
 var direction := Vector2(0,0)
 
@@ -14,8 +13,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	emit_signal("current_pos", global_position)
-	#print(global_position)
 	move_and_slide(direction*speed, Vector2(0,0))
 
 func _input(event):

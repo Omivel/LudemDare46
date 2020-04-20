@@ -13,8 +13,6 @@ const TOLERENCE := 11
 export var running_speed : float = 200
 export var walking_speed : float = 75
 
-var playerpos
-
 #left uninitialized to be initialized with an outside call
 var pathfinding : Navigation2D
 #another entity that this node will track down
@@ -61,8 +59,6 @@ func newPath(newPath : PoolVector2Array):
 func appendPath(newPath: PoolVector2Array):
 	path.append_array(newPath)
 
-func _on_KinematicBody2D_current_pos(pos):
-	playerpos = pos
 
 func _new_target(new_target):
 	if new_target is Player:

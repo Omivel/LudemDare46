@@ -68,4 +68,3 @@ position = Vector2( 414, 156 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 524.085, 294.427 )
-[connection signal="current_pos" from="KinematicBody2D" to="Monster" method="_on_KinematicBody2D_current_pos"]
