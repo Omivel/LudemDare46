@@ -5,7 +5,9 @@ onready var vision = $Vision
 onready var chaseTimer = $ChaseTimer
 onready var chaseUpdate = $ChaseUpdateTimer
 onready var atack = $Atack
+
 onready var collisionShape = $CollisionShape2D
+
 
 #how close to its pathfindng goal the monster hase to be to check it off its list
 const TOLERENCE := 11
