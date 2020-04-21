@@ -20,7 +20,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
 func set_off():
 	dur_timer.start()
 	emit_signal("alarm_start", global_position)

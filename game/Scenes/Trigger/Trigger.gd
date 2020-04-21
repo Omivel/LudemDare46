@@ -22,7 +22,10 @@ func _ready():
 					child.play("Sopen")
 				animated_sprite = child
 				if open:
-					child.frame = 19
+					if sidways:
+						child.frame = 9
+					else:
+						child.frame = 19
 				else:
 					child.frame = 0
 
@@ -34,7 +37,10 @@ func _process(delta):
 			else:
 				animated_sprite.play("open")
 			if open and animated_sprite.frame != 19:
-				animated_sprite.frame = 19
+				if sidways:
+					animated_sprite.frame = 9
+				else:
+					animated_sprite.frame = 19
 			elif !open and animated_sprite.frame != 0:
 				animated_sprite.frame = 0
 			

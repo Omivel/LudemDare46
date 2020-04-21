@@ -64,6 +64,10 @@ config/icon="res://icon.png"
 
 MusicControl="*res://Scenes/Music/music_control.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 ui_left={

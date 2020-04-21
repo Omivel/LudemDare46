@@ -22,34 +22,34 @@ func _ready():
 
 func _on_level1_meta_clicked(meta):
 	MusicControl.bloop()
-	get_tree().change_scene("res://Levels/TestLevel.tscn")
+	get_tree().change_scene("res://Levels/Level1.tscn")
 
 
 func _on_level2_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+	get_tree().change_scene("res://Levels/Level2.tscn")
 
 func _on_level3_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+#	get_tree().change_scene("res://Levels/Level3.tscn")
 
 func _on_level4_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+#	get_tree().change_scene("res://Levels/Level4.tscn")
 
 
 func _on_level5_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+#	get_tree().change_scene("res://Levels/Level5.tscn")
 
 func _on_level6_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+#	get_tree().change_scene("res://Levels/Level6.tscn")
 
 func _on_level7_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+#	get_tree().change_scene("res://Levels/Level7.tscn")
 
 func _on_level8_meta_clicked(meta):
 	MusicControl.bloop()
-	#get_tree().change_scene("res://Levels/TestLevel.tscn")
+#	get_tree().change_scene("res://Levels/Level8.tscn")

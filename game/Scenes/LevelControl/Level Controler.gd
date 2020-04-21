@@ -4,7 +4,7 @@ class_name Level_Control
 signal door(status)
 
 onready var navTilesPath = load("res://Scenes/NavTileset/NavTileset.tscn")
-onready var tileMap = $TestTileMap
+onready var tileMap = $TileMap
 
 var how_many_monsters : int
 var how_many_captured : int
