@@ -38,6 +38,8 @@ func failstate():
 	$main_drone.set_volume_db(-80)
 	$monster_music.stop()
 	$footsteps.stop()
+	$teethy_licks.stop()
+	$monster2_music.stop()
 		
 func winstate():
 	$fail_sound.stop()
@@ -46,6 +48,8 @@ func winstate():
 	$main_drone.set_volume_db(-80)
 	$monster_music.stop()
 	$footsteps.stop()
+	$teethy_licks.stop()
+	$monster2_music.stop()
 
 func main_stop():
 	$main_drone.stop()
@@ -53,7 +57,7 @@ func main_stop():
 func bloop():
 	if !$click.is_playing():
 		$click.play()
-    
+	
 func toggle_scary_sounds(monster_type : int):
 	match monster_type:
 		0:
@@ -65,3 +69,14 @@ func toggle_scary_sounds(monster_type : int):
 func is_playing_main():
 	return $main_drone.is_playing()
 
+func ping():
+	if !$ping.is_playing():
+		$ping.play()
+
+func start_alarm():
+	if !$alarm.is_playing():
+		$alarm.play()
+		
+func stop_alarm():
+	if $alarm.is_playing():
+		$alarm.stop()

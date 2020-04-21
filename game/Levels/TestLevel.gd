@@ -48,7 +48,7 @@ func _ready():
 
 func _process(delta):
 	for mon in monster_list:
-		$music_control.monster(mon.global_position.distance_to($Player.global_position), mon.get_type())
+		MusicControl.monster(mon.global_position.distance_to($Player.global_position), mon.get_type())
 
 func _alarm(pos):
 	for child in get_children():
@@ -109,4 +109,4 @@ func not_door():
 	MusicControl.bloop()
 
 func _scary_sounds(type):
-	$music_control.toggle_scary_sounds(type)
+	MusicControl.toggle_scary_sounds(type)
